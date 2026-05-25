@@ -1,0 +1,204 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-image: url('images/background-alexis-butchery-project.jpeg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    /* ΑΛΛΑΓΗ 1: Διορθώνει το κενό και κρατάει το εφέ σε όλο το ύψος */
+    min-height: 100vh; 
+    
+    /* ΑΛΛΑΓΗ 2: Μεταφέρουμε το blur εδώ για να πιάνει σωστά όλο το background */
+    position: relative;
+}
+
+
+
+/* Προσθέτουμε αυτό για να εφαρμόζεται το blur σωστά σε όλο το background χωρίς να χαλάει */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(25px);
+    z-index: -1; /* Κάθισε πίσω από το κείμενο */
+}
+
+/* --- 1. ΓΕΝΙΚΕΣ ΡΥΘΜΙΣΕΙΣ NAVBAR --- */
+.navbar ul {
+    list-style-type: none;
+    background: rgba(10, 25, 32, 0);
+    backdrop-filter: blur(25px);
+    margin: 0;
+    padding: 0 5%; 
+    display: flex;
+    align-items: center;    
+    justify-content: center; /* Κεντράρει τα li (Home, κλπ) στη μέση */
+    height: 100px;
+    position: relative;      /* Απαραίτητο για να στοιχιστεί το logo απόλυτα */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-style: italic;
+}
+
+/* --- 2. ΡΥΘΜΙΣΕΙΣ LOGO (ΤΕΡΜΑ ΑΡΙΣΤΕΡΑ) --- */
+.logo-link {
+    position: absolute;      /* Βγάζει το logo από τη ροή και το "καρφώνει" */
+    left: 5%;                /* Τέρμα αριστερά (ίδιο margin με το padding του ul) */
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+#logo {
+    height: 80px; 
+    width: auto;
+    background: transparent !important;
+    transition: transform 0.3s ease;
+}
+
+/* --- 3. ΡΥΘΜΙΣΕΙΣ ΓΙΑ ΤΑ LINKS (MENU) --- */
+.navbar li {
+    display: flex;
+    align-items: center;
+    margin: 0 5px; /* Μικρή απόσταση μεταξύ των λέξεων */
+}
+
+/* Αφαιρούμε το "order" γιατί τώρα τα θέλουμε στη σειρά τους */
+.navbar li { order: unset !important; }
+
+.navbar a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    transition: all 0.4s ease;
+}
+
+/* HOVER ΓΙΑ ΤΑ LINKS */
+.navbar a:not(.logo-link):hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-3px);
+    color: #6db4cc;
+}
+
+#name_of_logo, #shop {
+    font-style: italic;
+    /* Χρώμα που μοιάζει με ασήμι/μέταλλο */
+    background: linear-gradient(to bottom, #cfd9df 0%, #e2ebf0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Η λεπτομέρεια: Σκληρή σκιά που δίνει όγκο */
+    filter: drop-shadow(2px 2px 0px #4a788e) 
+            drop-shadow(5px 5px 15px rgba(0,0,0,0.5));
+    letter-spacing: 3px;
+}
+
+/* --- 4. RESPONSIVE ΓΙΑ ΚΙΝΗΤΑ --- */
+@media (max-width: 950px) {
+    .navbar ul {
+        height: 90px; /* Μικρύναμε ελαφρώς το ύψος */
+        flex-direction: row; 
+        flex-wrap: nowrap; /* ΚΡΙΣΙΜΟ: Απαγορεύει στις λέξεις να αλλάξουν γραμμή */
+        justify-content: space-between; 
+        padding: 0 10px; /* Λιγότερο κενό δεξιά-αριστερά στην οθόνη */
+    }
+    
+    .logo-link {
+        position: static; 
+        margin: 0 !important;
+    }
+
+    #logo {
+        height: 45px; /* Μικραίνει το logo για να δώσει χώρο στις λέξεις */
+    }
+
+    .navbar li {
+        margin: 0 1px; /* Ελάχιστο κενό ανάμεσα στα li */
+    }
+
+    .navbar a {
+        font-size: 0.7rem; /* Πιο μικρή γραμματοσειρά για να χωράνε σίγουρα */
+        padding: 6px 6px; /* Μειώνουμε το εσωτερικό κενό (padding) των κουμπιών */
+        white-space: nowrap; /* Εμποδίζει το "OUR TEAM" να σπάσει σε δύο γραμμές */
+    }
+    
+}
+
+
+
+.links-container {
+    display: flex; /* Βάζει τα στοιχεία το ένα δίπλα στο άλλο */
+    justify-content: center; /* Κεντράρισμα των στηλών */
+    gap: 50px; /* Απόσταση μεταξύ των δύο στηλών */
+    padding: 40px 20px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column; /* Τα link μέσα στη στήλη θα είναι το ένα κάτω από το άλλο */
+    width: 250px; /* Σταθερό πλάτος για κάθε στήλη */
+}
+
+/* Προαιρετικά: Αφαιρεί την υπογράμμιση από τα link αν το επιθυμείς */
+.column a {
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    
+    font-style: italic;
+    font-size: 1.3rem;
+    color: white;
+    text-decoration: none;
+    padding:1px 20px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    transition: all 0.4s ease;
+}
+
+
+.column a:not(.logo-link):hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-3px);
+    color: #6db4cc;
+}
+
+.title-wrapper {
+    text-align: center; /* Κεντράρει ό,τι υπάρχει μέσα στο div */
+    width: 100%;
+
+}
+
+#title-of-products {
+    display: inline-block; 
+    border-bottom: grey solid 1px;
+    font-style: italic;
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+    /* Χρώμα που μοιάζει με ασήμι/μέταλλο */
+    background: linear-gradient(to bottom, #cfd9df 0%, #e2ebf0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Η λεπτομέρεια: Σκληρή σκιά που δίνει όγκο */
+    filter: drop-shadow(2px 2px 0px #4a788e) 
+            drop-shadow(5px 5px 15px rgba(0,0,0,0.5));
+    letter-spacing: 3px;
+}

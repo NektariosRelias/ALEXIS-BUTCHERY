@@ -1,0 +1,725 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-image: url('images/background-alexis-butchery-project.jpeg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 200vh; 
+    
+    
+}
+html {
+    scroll-behavior: smooth;
+}
+
+
+
+
+
+
+
+/* --- 1. ΓΕΝΙΚΕΣ ΡΥΘΜΙΣΕΙΣ NAVBAR --- */
+.navbar ul {
+    list-style-type: none;
+    background: rgba(10, 25, 32, 0);
+    backdrop-filter: blur(25px);
+    margin: 0;
+    padding: 0 5%; 
+    display: flex;
+    align-items: center;    
+    justify-content: center; /* Κεντράρει τα li (Home, κλπ) στη μέση */
+    height: 100px;
+    position: relative;      /* Απαραίτητο για να στοιχιστεί το logo απόλυτα */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-style: italic;
+}
+
+/* --- 2. ΡΥΘΜΙΣΕΙΣ LOGO (ΤΕΡΜΑ ΑΡΙΣΤΕΡΑ) --- */
+.logo-link {
+    position: absolute;      /* Βγάζει το logo από τη ροή και το "καρφώνει" */
+    left: 5%;                /* Τέρμα αριστερά (ίδιο margin με το padding του ul) */
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+#logo {
+    height: 80px; 
+    width: auto;
+    background: transparent !important;
+    transition: transform 0.3s ease;
+}
+
+/* --- 3. ΡΥΘΜΙΣΕΙΣ ΓΙΑ ΤΑ LINKS (MENU) --- */
+.navbar li {
+    display: flex;
+    align-items: center;
+    margin: 0 5px; /* Μικρή απόσταση μεταξύ των λέξεων */
+}
+
+/* Αφαιρούμε το "order" γιατί τώρα τα θέλουμε στη σειρά τους */
+.navbar li { order: unset !important; }
+
+.navbar a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    transition: all 0.4s ease;
+}
+
+/* HOVER ΓΙΑ ΤΑ LINKS */
+.navbar a:not(.logo-link):hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-3px);
+    color: #6db4cc;
+}
+
+#name_of_logo, #shop {
+    font-style: italic;
+    /* Χρώμα που μοιάζει με ασήμι/μέταλλο */
+    background: linear-gradient(to bottom, #cfd9df 0%, #e2ebf0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Η λεπτομέρεια: Σκληρή σκιά που δίνει όγκο */
+    filter: drop-shadow(2px 2px 0px #4a788e) 
+            drop-shadow(5px 5px 15px rgba(0,0,0,0.5));
+    letter-spacing: 3px;
+}
+
+/* --- 4. RESPONSIVE ΓΙΑ ΚΙΝΗΤΑ --- */
+@media (max-width: 950px) {
+    .navbar ul {
+        height: 90px; /* Μικρύναμε ελαφρώς το ύψος */
+        flex-direction: row; 
+        flex-wrap: nowrap; /* ΚΡΙΣΙΜΟ: Απαγορεύει στις λέξεις να αλλάξουν γραμμή */
+        justify-content: space-between; 
+        padding: 0 10px; /* Λιγότερο κενό δεξιά-αριστερά στην οθόνη */
+    }
+    
+    .logo-link {
+        position: static; 
+        margin: 0 !important;
+    }
+
+    #logo {
+        height: 45px; /* Μικραίνει το logo για να δώσει χώρο στις λέξεις */
+    }
+
+    .navbar li {
+        margin: 0 1px; /* Ελάχιστο κενό ανάμεσα στα li */
+    }
+
+    .navbar a {
+        font-size: 0.7rem; /* Πιο μικρή γραμματοσειρά για να χωράνε σίγουρα */
+        padding: 6px 6px; /* Μειώνουμε το εσωτερικό κενό (padding) των κουμπιών */
+        white-space: nowrap; /* Εμποδίζει το "OUR TEAM" να σπάσει σε δύο γραμμές */
+    }
+    
+    .title_of_paragraph {
+        letter-spacing: 2px !important;
+        font-size: 1.4rem !important;
+    }
+}
+
+
+.background-wrapper {
+    position: relative; /* Απαραίτητο για να κλειδώσει το cover μέσα */
+    width: 100%;
+    height: 80vh; /* Ή όποιο ύψος θέλεις, π.χ. 500px */
+    overflow: hidden;
+}
+
+#first_photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Κάνει την εικόνα να γεμίζει το χώρο χωρίς να παραμορφώνεται */
+    display: block;
+}
+
+.cover {
+    /* Δημιουργεί το σκοτεινό φίλτρο πάνω από την εικόνα */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.729); /* Αυξάνεις το 0.5 αν το θες πιο σκούρο */
+    
+    /* Κεντράρει τα πάντα (λογότυπο και κείμενα) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#bull { 
+    width: 350px; /* Καλύτερα σταθερό μέγεθος ή % */
+    margin-top: 0px; 
+}
+
+#name_of_logo { 
+    color: white; 
+    font-size: clamp(2rem, 8vw, 5rem); /* Προσαρμόζεται στο μέγεθος της οθόνης */
+    text-transform: uppercase; 
+    margin: 0; 
+    font-weight: bold;
+}
+
+#shop { 
+    color: white; 
+    font-size: clamp(1rem, 4vw, 2.5rem); 
+    text-transform: uppercase; 
+    margin: 0; 
+    letter-spacing: 2px; /* Δίνει λίγο "αέρα" στα γράμματα */
+}
+
+
+
+
+.google-map {
+    
+    width: 100%; /* Πιάνει όλο το πλάτος του container */
+    max-width: 1200px; /* Για να μην απλώνει υπερβολικά σε μεγάλες οθόνες */
+    margin: 30px auto; /* Κεντράρισμα */
+    overflow: hidden;
+    border-radius: 12px; /* Στρογγυλεμένες γωνίες για πιο μοντέρνο στυλ */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Μια απαλή σκιά */
+}
+
+.google-map iframe {
+    width: 100%; /* Ο χάρτης ακολουθεί το πλάτος του div */
+    height: 450px; /* Το ύψος που προτιμάς */
+    display: block;
+}
+
+
+
+
+
+/* Google Maps Section */
+#page_google_maps {
+    background: rgba(10, 25, 32, 0);
+    backdrop-filter: blur(25px);
+    padding: 50px 0 0 0;
+    box-sizing: border-box;
+    text-align: center;
+    transition: 0.5s;
+}
+
+
+
+#p {
+    font-style: italic;
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    /* Χρώμα που μοιάζει με ασήμι/μέταλλο */
+    background: linear-gradient(to bottom, #cfd9df 0%, #e2ebf0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Η λεπτομέρεια: Σκληρή σκιά που δίνει όγκο */
+    filter: drop-shadow(2px 2px 0px #4a788e) 
+            drop-shadow(5px 5px 15px rgba(0,0,0,0.5));
+    letter-spacing: 8px;
+}
+
+.glowbutton {
+    display: inline-block;
+    margin-top: 3%;
+    text-decoration: none;
+  --glow-color: rgb(176, 252, 255);
+  --glow-spread-color: rgba(123, 251, 255, 0.781);
+  --enhanced-glow-color: rgb(206, 255, 255);
+  --btn-color: rgb(61, 127, 136);
+  border: 0.25em solid var(--glow-color);
+  padding: 1em 3em;
+  color: var(--glow-color);
+  font-size: 18px;
+  font-weight: bold;
+  background-color: var(--btn-color);
+  border-radius: 1em;
+  outline: none;
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+  text-shadow: 0 0 0.5em var(--glow-color);
+  position: relative;
+  transition: all 0.3s;
+}
+
+.glowbutton::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 120%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--glow-spread-color);
+  filter: blur(2em);
+  opacity: 0.7;
+  transform: perspective(1.5em) rotateX(35deg) scale(1, 0.6);
+}
+
+.glowbutton:hover {
+  color: var(--btn-color);
+  background-color: var(--glow-color);
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 2em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+}
+
+.glowbutton:active {
+  box-shadow: 0 0 0.6em 0.25em var(--glow-color),
+    0 0 2.5em 2em var(--glow-spread-color),
+    inset 0 0 0.5em 0.25em var(--glow-color);
+}
+
+/* delivery with phone number and pos */
+.delivery {
+    display: flex;
+    flex-direction: column; /* Βάζει τα στοιχεία το ένα κάτω από το άλλο */
+    align-items: center;    /* Κεντράρει οριζόντια το κουμπί και τον τίτλο */
+    justify-content: center;
+    text-align: center;     /* Διασφαλίζει ότι και το κείμενο είναι κεντραρισμένο */
+    width: 100%;            /* Πιάνει όλο το διαθέσιμο πλάτος */
+    padding: 20px 0;
+    margin-top: 10%;
+    
+}
+
+.button {
+    margin-top: 5%;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  border: none;
+  background-color: #30C04F;
+}
+
+.button:hover {
+  background-color: #2bac47;
+}
+
+
+
+#title-of-delivery {
+    font-style: italic;
+    margin-top: 4%;
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    /* Χρώμα που μοιάζει με ασήμι/μέταλλο */
+    background: linear-gradient(to bottom, #cfd9df 0%, #e2ebf0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Η λεπτομέρεια: Σκληρή σκιά που δίνει όγκο */
+    filter: drop-shadow(2px 2px 0px #4a788e) 
+            drop-shadow(5px 5px 15px rgba(0,0,0,0.5));
+    letter-spacing: 8px;
+}
+
+#delivery-text {
+    
+    max-width: 800px;           /* Περιορίζει το πλάτος για να μην απλώνεται το κείμενο σε μια τεράστια γραμμή */
+    margin: 0 auto;             /* Κεντράρει την παράγραφο στη σελίδα */
+    font-size: 1.1rem;          /* Ιδανικό μέγεθος για να διαβάζεται άνετα */
+    line-height: 1.8;           /* Δίνει "αέρα" ανάμεσα στις γραμμές (line-height) */
+    text-align: center;         /* Κεντραρισμένο κείμενο για να ταιριάζει με τον τίτλο */
+    color: #f5f5f5;             /* Ένα πολύ απαλό off-white/ανοιχτό γκρι για να κάνει αντίθεση αν το background είναι σκοτεινό */
+    font-weight: 400;           /* Κανονικό πάχος γραμματοσειράς για να ξεχωρίζει από τον τίτλο */
+    padding: 0 20px;            /* Geia να μην κολλάει στις άκρες στις οθόνες των κινητών */
+    letter-spacing: 0.5px;      /* Μικρή απόσταση στα γράμματα για στυλ */
+    margin-bottom: 5%;
+}
+
+
+#block-of-delivery{
+    margin-top: 7%;
+    width: 75%;
+    height: auto;
+    background-color: #31505f;
+    border-radius: 22px;
+}
+
+#phone-number-delivery{
+    color: white;
+    font-size: 1.5rem;
+}
+
+
+
+
+
+#google-reviews {
+    font-style: italic;
+    margin-top: 18%;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+    background: linear-gradient(to bottom, #cfd9df 0%, #e2ebf0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(2px 2px 0px #4a788e) 
+            drop-shadow(5px 5px 15px rgba(0,0,0,0.5));
+    letter-spacing: 8px;
+}
+
+/* Το Container που ελέγχει τη διάταξη 2x2 */
+.reviews-container {
+    display: flex;
+    flex-wrap: wrap;           /* Επιτρέπει στα κουτιά να πέφτουν στην επόμενη σειρά */
+    justify-content: center;   /* Κεντράρει τα ζευγάρια στην οθόνη */
+    gap: 40px;                 /* Απόσταση ανάμεσα στα κουτιά (οριζόντια και κάθετα) */
+    max-width: 1000px;         /* Περιορίζει το συνολικό πλάτος για να δείχνει μαζεμένο */
+    margin: 50px auto 250px auto;  /* Κεντράρει όλο το container στη σελίδα */
+    padding: 0 20px;
+}
+
+/* Κοινό στυλ και για τα 3 κουτιά */
+.review-box {
+    background-color: #ffffff;
+    /* Υπολογίζει 50% πλάτος για το καθένα, αφαιρώντας το κενό (gap) ώστε να χωράνε ακριβώς 2 ανά σειρά */
+    width: calc(50% - 20px);   
+    min-width: 300px;          /* Στα κινητά που δεν χωράνε 2, θα γυρίσει αυτόματα σε 1 ανά σειρά */
+    padding: 20px;
+    border-radius: 6px;        /* Smooth στρογγυλέμα αντί για 2% που τα παραμόρφωνε */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08); 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    box-sizing: border-box;    /* Σημαντικό για να μετράει σωστά το padding στο πλάτος */
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+
+
+.review-box:hover {
+    /* Κάνει μόνο το ελαφρύ ζουμ (2%) στο κουτάκι χωρίς να αλλάζει τίποτα άλλο */
+    transform: scale(1.03); 
+}
+
+
+
+
+.review-header {
+    margin-bottom: 15px;
+}
+
+.review-author {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-align: left;
+}
+
+.review-stars {
+    color: #fbbc05;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-align: left;
+}
+
+.review-text {
+    margin: 0;
+    padding-top: 15px;
+    text-align: left;
+    border-top: 1px solid #eeeeee; 
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #70757a;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.info-container {
+    display: flex;
+    justify-content: center;   /* Κεντράρει όλο το div στη σελίδα */
+    align-items: flex-start;   /* Ευθυγραμμίζει τα περιεχόμενα στην κορυφή */
+    gap: 80px; 
+    background-color: #31505f;
+    color: white;
+    padding: 50px 20px;
+    margin-top: 5%;
+    font-family: Arial, sans-serif;
+}
+
+.hours-box {
+    margin-top: 2%;
+    text-align: left;
+}
+
+#open {
+    font-style: italic;
+    color:rgb(123, 251, 255);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 0;             /* Αφαιρεί το κενό πάνω για να είναι στην ίδια ευθεία */
+    margin-bottom: 20px;
+    /* Χρώμα που μοιάζει με ασήμι/μέταλλο */
+    background: linear-gradient(to bottom, #cfd9df 0%, #e2ebf0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Η λεπτομέρεια: Σκληρή σκιά που δίνει όγκο */
+    filter: drop-shadow(2px 2px 0px #4a788e) 
+            drop-shadow(5px 5px 15px rgba(0,0,0,0.5));
+    letter-spacing: 3px;
+}
+
+.hours-box p {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.tel-box {
+    padding-top: 5px; 
+    margin-top: 0.8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#contact {
+    font-style: italic;
+    font-size: 2.2rem;
+    color:rgb(123, 251, 255);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 10px;          /* Ευθυγράμμιση με το "ΩΡΕΣ" */
+    /* Χρώμα που μοιάζει με ασήμι/μέταλλο */
+    background: linear-gradient(to bottom, #cfd9df 0%, #e2ebf0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Η λεπτομέρεια: Σκληρή σκιά που δίνει όγκο */
+    filter: drop-shadow(2px 2px 0px #4a788e) 
+            drop-shadow(5px 5px 15px rgba(0,0,0,0.5));
+    letter-spacing: 3px;
+}
+
+#tel {
+    font-size: 1.7rem;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    margin-top: 0;             
+    white-space: nowrap;
+}
+
+#email {
+    font-size: 1.5rem;
+    color: white;
+    margin-top: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Νέα Στήλη για το Instagram */
+.social-box {
+    margin-top: 1%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#follow-title {
+    font-style: italic;
+    font-size: 2.2rem;
+    color:rgb(123, 251, 255);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    /* Χρώμα που μοιάζει με ασήμι/μέταλλο */
+    background: linear-gradient(to bottom, #cfd9df 0%, #e2ebf0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Η λεπτομέρεια: Σκληρή σκιά που δίνει όγκο */
+    filter: drop-shadow(2px 2px 0px #4a788e) 
+            drop-shadow(5px 5px 15px rgba(0,0,0,0.5));
+    letter-spacing: 3px;
+}
+
+#link_relias{
+    text-decoration: none;
+    color: #777;
+}
+
+.footer-signature {
+    clear: both;               
+    width: 100%;
+    background-color: #31505f;
+    color: #777;
+    text-align: center;         
+    padding: 20px 30px;        
+    font-size: 17px;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    display: block;            
+}
+
+.designer-name {
+    color:rgb(123, 251, 255);
+    font-weight: bold;
+}
+
+/* Ρυθμίζουμε όλα τα p μέσα στο container */
+.info-container p {
+    font-size: 20px; 
+    text-align: center;
+}
+
+/* Ειδικό στυλ για τον τίτλο και το τηλέφωνο */
+#open, #tel {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#button-insta {
+  background: transparent;
+  position: relative;
+  padding: 5px 15px;
+  display: inline-flex; /* Άλλαξε σε inline-flex για να μην απλώνεται σε όλο το πλάτος */
+  align-items: center;
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid white;
+  border-radius: 25px;
+  outline: none;
+  overflow: hidden; /* Αυτό κρατάει το κόκκινο εφέ ΜΕΣΑ στο κουμπί */
+  color:white;
+  transition: color 0.3s 0.1s ease-out, border-color 0.3s ease;
+  text-align: center;
+  z-index: 1; /* Δίνει προτεραιότητα στο κουμπί */
+}
+
+#button-insta span {
+  margin: 10px;
+}
+
+/* Εδώ έγινε η διόρθωση για να μην ξεφεύγει το εφέ στο background */
+#button-insta::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Κεντράρει το εφέ ακριβώς στη μέση του κουμπιού */
+  content: '';
+  border-radius: 50%;
+  display: block;
+  width: 0;
+  height: 0; /* Ξεκινάει από το μηδέν */
+  text-align: center;
+  transition: width 0.5s ease-out, height 0.5s ease-out;
+  z-index: -1;
+  background-color:white; /* Χρήση background αντί για τεράστιο box-shadow */
+}
+
+#button-insta:hover {
+  color: #31505f;
+  border: 1px solid white;
+}
+
+/* Όταν γίνεται hover, το κόκκινο κυκλάκι μεγαλώνει και γεμίζει το κουμπί */
+#button-insta:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+
+
+/* --- MEDIA QUERIES ΓΙΑ ΚΙΝΗΤΑ --- */
+@media (max-width: 768px) {
+    .info-container {
+        flex-direction: column;
+        align-items: center;   /* Στο κινητό τα κεντράρει όλα κάθετα */
+        gap: 50px;
+        text-align: center;
+    }
+    
+    .hours-box, .tel-box, .social-box {
+        margin-top: 0;         /* Ακυρώνει τα αρνητικά margin στα κινητά */
+        text-align: center;
+    }
+
+    #open, #contact, #follow-title {
+        margin-bottom: 15px;
+    }
+
+    .footer-signature {
+        text-align: center;    
+        padding: 15px;
+    }
+}
