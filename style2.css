@@ -2,22 +2,11 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-image: url('images/background-alexis-butchery-project.jpeg');
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    
-    /* ΑΛΛΑΓΗ 1: Διορθώνει το κενό και κρατάει το εφέ σε όλο το ύψος */
-    min-height: 100vh; 
-    
-    /* ΑΛΛΑΓΗ 2: Μεταφέρουμε το blur εδώ για να πιάνει σωστά όλο το background */
+    min-height: 100vh;
+    overflow-x: hidden; /* Για αποφυγή οριζόντιου scroll */
     position: relative;
 }
 
-
-
-/* Προσθέτουμε αυτό για να εφαρμόζεται το blur σωστά σε όλο το background χωρίς να χαλάει */
 body::before {
     content: "";
     position: fixed;
@@ -25,8 +14,15 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
+    /* Εδώ βάζουμε το background image */
+    background-image: url('images/background-alexis-butchery-project.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* Εδώ εφαρμόζεται το blur */
     backdrop-filter: blur(25px);
-    z-index: -1; /* Κάθισε πίσω από το κείμενο */
+    /* Διασφαλίζουμε ότι είναι πίσω από όλα τα άλλα */
+    z-index: -1; 
 }
 
 /* --- 1. ΓΕΝΙΚΕΣ ΡΥΘΜΙΣΕΙΣ NAVBAR --- */
@@ -204,14 +200,14 @@ body::before {
 }
 
 
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
     .links-container {
-        flex-direction: column; /* Αλλάζει τη διάταξη σε κάθετη */
-        gap: 20px;              /* Μειώνει την απόσταση μεταξύ των στοιχείων */
-        align-items: center;    /* Κεντράρει τα στοιχεία */
+        flex-direction: column; 
+        gap: 20px;              
+        align-items: center;   
     }
 
     .column {
-        width: 100%;            /* Κάνει τις στήλες να πιάνουν όλο το πλάτος */
+        width: 100%;           
     }
-}
+} */
