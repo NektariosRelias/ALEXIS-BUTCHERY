@@ -182,6 +182,21 @@ body::before {
     font-style: italic;
 }
 
-/* 
+
 @media (max-width: 1200px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .services-grid { grid-template-columns: 1fr; } } */
+@media (max-width: 600px) { .services-grid { grid-template-columns: 1fr; } }
+
+
+@media (max-width: 950px) {
+    body::before {
+        /* Του δίνουμε λίγο παραπάνω ύψος για να καλύψει την κάτω μπάρα */
+        height: 120vh; 
+        
+        /* Αν παρ' όλα αυτά το blur φαίνεται να "τελειώνει" πριν το κάτω μέρος, 
+           μπορείς να το τραβήξεις λίγο πιο κάτω */
+        bottom: -20vh;
+        
+        /* Εξασφαλίζουμε ότι δεν θα δημιουργήσει οριζόντιο scrollbar */
+        width: 100%;
+    }
+}
