@@ -23,7 +23,7 @@ body {
 /* Αυτό είναι το στοιχείο που θα κάνει ΜΟΝΟ το blur */
 .blur-overlay {
     position: fixed;
-    top: -50px;
+    top: -250px;
     left: -50px;
     right: -50px;
     bottom: -50px;
