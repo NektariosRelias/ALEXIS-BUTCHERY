@@ -186,3 +186,15 @@ body::before {
     letter-spacing: 3px;
 }
 
+@media (max-width: 600px) {
+    .links-container {
+        flex-direction: column; /* Αλλάζει τη διάταξη σε κάθετη */
+        gap: 20px;              /* Μειώνει την απόσταση μεταξύ των στοιχείων */
+        align-items: center;    /* Κεντράρει τα στοιχεία */
+    }
+
+    .column {
+        width: 100%;            /* Κάνει τις στήλες να πιάνουν όλο το πλάτος */
+    }
+}
+

@@ -31,23 +31,20 @@ body::before {
 /* --- 1. ΓΕΝΙΚΕΣ ΡΥΘΜΙΣΕΙΣ NAVBAR --- */
 .navbar ul {
     list-style-type: none;
-    background: rgba(10, 25, 32, 0);
-    backdrop-filter: blur(25px);
     margin: 0;
     padding: 0 5%; 
     display: flex;
     align-items: center;    
-    justify-content: center; /* Κεντράρει τα li (Home, κλπ) στη μέση */
+    justify-content: center; 
     height: 100px;
-    position: relative;      /* Απαραίτητο για να στοιχιστεί το logo απόλυτα */
+    position: relative;      
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    font-style: italic;
 }
 
 /* --- 2. ΡΥΘΜΙΣΕΙΣ LOGO (ΤΕΡΜΑ ΑΡΙΣΤΕΡΑ) --- */
 .logo-link {
-    position: absolute;      /* Βγάζει το logo από τη ροή και το "καρφώνει" */
-    left: 5%;                /* Τέρμα αριστερά (ίδιο margin με το padding του ul) */
+    position: absolute;      
+    left: 5%;                
     background: none !important;
     border: none !important;
     padding: 0 !important;
@@ -69,10 +66,9 @@ body::before {
 .navbar li {
     display: flex;
     align-items: center;
-    margin: 0 5px; /* Μικρή απόσταση μεταξύ των λέξεων */
+    margin: 0 5px; 
 }
 
-/* Αφαιρούμε το "order" γιατί τώρα τα θέλουμε στη σειρά τους */
 .navbar li { order: unset !important; }
 
 .navbar a {
@@ -88,23 +84,10 @@ body::before {
     transition: all 0.4s ease;
 }
 
-/* HOVER ΓΙΑ ΤΑ LINKS */
 .navbar a:not(.logo-link):hover {
     background: rgba(255, 255, 255, 0.08);
     transform: translateY(-3px);
     color: #6db4cc;
-}
-
-#name_of_logo, #shop {
-    font-style: italic;
-    /* Χρώμα που μοιάζει με ασήμι/μέταλλο */
-    background: linear-gradient(to bottom, #cfd9df 0%, #e2ebf0 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    /* Η λεπτομέρεια: Σκληρή σκιά που δίνει όγκο */
-    filter: drop-shadow(2px 2px 0px #4a788e) 
-            drop-shadow(5px 5px 15px rgba(0,0,0,0.5));
-    letter-spacing: 3px;
 }
 
 /* --- 4. RESPONSIVE ΓΙΑ ΚΙΝΗΤΑ --- */
