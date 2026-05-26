@@ -17,30 +17,34 @@
 body {
     margin: 0;
     padding: 0;
-    /* Μόνο χρώμα φόντου, όχι εικόνα εδώ */
-    background-color: #1a1a1a; 
+    min-height: 100vh;
+    background-color: transparent; /* Πολύ σημαντικό! */
 }
 
-.blur-background {
+/* Αυτό είναι το στοιχείο που θα έχει ΜΟΝΟ την εικόνα φόντου */
+.background-image {
     position: fixed;
     top: -50px;
     left: -50px;
     right: -50px;
     bottom: -50px;
-    
-    /* Εδώ βάζεις την εικόνα σου */
     background-image: url('images/background-alexis-butchery-project.jpeg');
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
-    
-    /* Εδώ μπαίνει το blur */
+    z-index: -2; /* Το βάζουμε ακόμα πιο πίσω */
+    pointer-events: none;
+}
+
+/* Αυτό είναι το στοιχείο που θα κάνει ΜΟΝΟ το blur */
+.blur-overlay {
+    position: fixed;
+    top: -50px;
+    left: -50px;
+    right: -50px;
+    bottom: -50px;
     backdrop-filter: blur(25px);
-    
-    /* Το βάζουμε πίσω από όλα */
-    z-index: -1;
-    
-    /* Για να μην εμποδίζει τα κλικ σου */
+    z-index: -1; /* Κάθεται ΠΑΝΩ από την εικόνα και ΠΙΣΩ από το κείμενο */
     pointer-events: none;
 }
 
