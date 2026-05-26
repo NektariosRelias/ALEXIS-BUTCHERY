@@ -1,4 +1,4 @@
-body {
+/* body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,20 +8,39 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     
-    /* ΑΛΛΑΓΗ ΕΔΩ: Χρησιμοποίησε dvh αντί για vh */
+    
     min-height: 100dvh; 
     
     position: relative;
+} */
+
+body {
+    margin: 0;
+    padding: 0;
+    /* Μόνο χρώμα φόντου, όχι εικόνα εδώ */
+    background-color: #1a1a1a; 
 }
 
-.blur-overlay {
+.blur-background {
     position: fixed;
     top: -50px;
     left: -50px;
     right: -50px;
     bottom: -50px;
+    
+    /* Εδώ βάζεις την εικόνα σου */
+    background-image: url('images/background-alexis-butchery-project.jpeg');
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    
+    /* Εδώ μπαίνει το blur */
     backdrop-filter: blur(25px);
+    
+    /* Το βάζουμε πίσω από όλα */
     z-index: -1;
+    
+    /* Για να μην εμποδίζει τα κλικ σου */
     pointer-events: none;
 }
 
