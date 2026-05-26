@@ -2,11 +2,22 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    min-height: 100vh;
-    overflow-x: hidden; /* Για αποφυγή οριζόντιου scroll */
+    background-image: url('images/background-alexis-butchery-project.jpeg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    /* ΑΛΛΑΓΗ 1: Διορθώνει το κενό και κρατάει το εφέ σε όλο το ύψος */
+    min-height: 100vh; 
+    
+    /* ΑΛΛΑΓΗ 2: Μεταφέρουμε το blur εδώ για να πιάνει σωστά όλο το background */
     position: relative;
 }
 
+
+
+/* Προσθέτουμε αυτό για να εφαρμόζεται το blur σωστά σε όλο το background χωρίς να χαλάει */
 body::before {
     content: "";
     position: fixed;
@@ -14,37 +25,27 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Εδώ βάζουμε το background image */
-    background-image: url('images/background-alexis-butchery-project.jpeg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    /* Εδώ εφαρμόζεται το blur */
     backdrop-filter: blur(25px);
-    /* Διασφαλίζουμε ότι είναι πίσω από όλα τα άλλα */
-    z-index: -1; 
+    z-index: -1; /* Κάθισε πίσω από το κείμενο */
 }
 
 /* --- 1. ΓΕΝΙΚΕΣ ΡΥΘΜΙΣΕΙΣ NAVBAR --- */
 .navbar ul {
     list-style-type: none;
-    background: rgba(10, 25, 32, 0);
-    backdrop-filter: blur(25px);
     margin: 0;
     padding: 0 5%; 
     display: flex;
     align-items: center;    
-    justify-content: center; /* Κεντράρει τα li (Home, κλπ) στη μέση */
+    justify-content: center; 
     height: 100px;
-    position: relative;      /* Απαραίτητο για να στοιχιστεί το logo απόλυτα */
+    position: relative;      
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    font-style: italic;
 }
 
 /* --- 2. ΡΥΘΜΙΣΕΙΣ LOGO (ΤΕΡΜΑ ΑΡΙΣΤΕΡΑ) --- */
 .logo-link {
-    position: absolute;      /* Βγάζει το logo από τη ροή και το "καρφώνει" */
-    left: 5%;                /* Τέρμα αριστερά (ίδιο margin με το padding του ul) */
+    position: absolute;      
+    left: 5%;                
     background: none !important;
     border: none !important;
     padding: 0 !important;
@@ -66,10 +67,9 @@ body::before {
 .navbar li {
     display: flex;
     align-items: center;
-    margin: 0 5px; /* Μικρή απόσταση μεταξύ των λέξεων */
+    margin: 0 5px; 
 }
 
-/* Αφαιρούμε το "order" γιατί τώρα τα θέλουμε στη σειρά τους */
 .navbar li { order: unset !important; }
 
 .navbar a {
@@ -85,23 +85,10 @@ body::before {
     transition: all 0.4s ease;
 }
 
-/* HOVER ΓΙΑ ΤΑ LINKS */
 .navbar a:not(.logo-link):hover {
     background: rgba(255, 255, 255, 0.08);
     transform: translateY(-3px);
     color: #6db4cc;
-}
-
-#name_of_logo, #shop {
-    font-style: italic;
-    /* Χρώμα που μοιάζει με ασήμι/μέταλλο */
-    background: linear-gradient(to bottom, #cfd9df 0%, #e2ebf0 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    /* Η λεπτομέρεια: Σκληρή σκιά που δίνει όγκο */
-    filter: drop-shadow(2px 2px 0px #4a788e) 
-            drop-shadow(5px 5px 15px rgba(0,0,0,0.5));
-    letter-spacing: 3px;
 }
 
 /* --- 4. RESPONSIVE ΓΙΑ ΚΙΝΗΤΑ --- */
@@ -199,15 +186,3 @@ body::before {
     letter-spacing: 3px;
 }
 
-
-/* @media (max-width: 600px) {
-    .links-container {
-        flex-direction: column; 
-        gap: 20px;              
-        align-items: center;   
-    }
-
-    .column {
-        width: 100%;           
-    }
-} */
