@@ -1,36 +1,16 @@
 body {
     margin: 0;
     padding: 0;
-    min-height: 100vh;
-    background-color: transparent; /* Πολύ σημαντικό! */
+    background-image: url('images/Screenshot\ 2026-05-30\ 230123.png');
+   background-attachment: fixed;
+   background-position: center;
+   background-size: cover;
+   background-repeat: no-repeat;
+   
 }
 
-/* Αυτό είναι το στοιχείο που θα έχει ΜΟΝΟ την εικόνα φόντου */
-.background-image {
-    position: fixed;
-    top: -50px;
-    left: -50px;
-    right: -50px;
-    bottom: -50px;
-    background-image: url('images/background-alexis-butchery-project.jpeg');
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-    z-index: -2; /* Το βάζουμε ακόμα πιο πίσω */
-    pointer-events: none;
-}
 
-/* Αυτό είναι το στοιχείο που θα κάνει ΜΟΝΟ το blur */
-.blur-overlay {
-    position: fixed;
-    top: -250px;
-    left: -50px;
-    right: -50px;
-    bottom: -50px;
-    backdrop-filter: blur(25px);
-    z-index: -1; /* Κάθεται ΠΑΝΩ από την εικόνα και ΠΙΣΩ από το κείμενο */
-    pointer-events: none;
-}
+
 
 /* --- 1. ΓΕΝΙΚΕΣ ΡΥΘΜΙΣΕΙΣ NAVBAR --- */
 .navbar ul {
